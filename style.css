@@ -1,0 +1,987 @@
+/* --- Global Styles --- */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #64748b;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #475569;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Cari bagian body di atas, pastikan seperti ini */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color); /* Pastikan pakai var ini */
+  color: var(--text-main);
+  line-height: 1.6;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease; /* Tambahkan ini agar halus */
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Header & Profile --- */
+header.profile {
+  text-align: center;
+  padding: 60px 20px;
+  /* Gunakan variabel supaya otomatis berubah saat dark mode */
+  background: linear-gradient(to bottom, var(--card-bg), var(--bg-color));
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.role {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  height: 30px; /* Jaga stabilitas saat typing effect */
+}
+
+/* --- Variabel untuk Dark Mode --- */
+body.dark-mode {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --primary-color: #38bdf8; /* Warna biru yang lebih terang agar kontras */
+  --border-color: #334155;
+}
+
+/* Pastikan elemen-elemen ini ikut berubah warnanya */
+body.dark-mode header.profile {
+  background: linear-gradient(to bottom, #1e293b, #0f172a);
+}
+
+body.dark-mode .card,
+body.dark-mode .about-card,
+body.dark-mode .cert-item,
+body.dark-mode .marquee-container {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+  color: var(--text-main);
+}
+
+body.dark-mode .subtitle {
+  color: var(--text-muted);
+}
+
+/* --- Styling Top Bar --- */
+.top-bar {
+  background: var(--card-bg);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+/* Penyesuaian saat Dark Mode aktif */
+body.dark-mode .top-bar {
+  border-bottom-color: var(--border-color);
+  background: var(--card-bg);
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#dark-mode-toggle {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+body.dark-mode #dark-mode-toggle {
+  background: #334155;
+  border-color: var(--border-color);
+}
+
+.visitor-count {
+  font-size: 0.8rem;
+  background: var(--bg-color);
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Penyesuaian agar tidak terlalu penuh di layar kecil */
+@media (max-width: 480px) {
+  #date-time { display: none; } /* Sembunyikan waktu di HP kecil, fokus ke views */
+}
+
+/* --- Portfolio Categories --- */
+.portfolio-categories {
+  max-width: 1100px;
+  margin: 24px auto 8px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-btn {
+  border: 1px solid #cbd5e1;
+  background: var(--card-bg);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease,
+    color 0.18s ease, border-color 0.18s ease;
+}
+
+.category-btn:hover,
+.category-btn:focus-visible {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.category-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+body.dark-mode .category-btn {
+  border-color: var(--border-color);
+}
+
+@media (max-width: 600px) {
+  .portfolio-categories {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+
+  .category-btn {
+    flex: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-btn {
+    transition: none;
+  }
+}
+
+/* --- About Card --- */
+.about-card {
+  max-width: 700px;
+  margin: 30px auto;
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.about-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.portfolio-grid {
+    display: grid;
+    /* Mengunci 3 baris dengan tinggi otomatis */
+    grid-template-rows: repeat(3, auto); 
+    /* Memaksa kartu baru mengisi kolom ke samping (horizontal) */
+    grid-auto-flow: column;
+    /* Menentukan lebar tiap kolom (3 kolom terlihat sekaligus) */
+    grid-auto-columns: calc(33.33% - 14px); 
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.portfolio-grid .card {
+    /* Memastikan kartu berhenti tepat di layar saat digeser */
+    scroll-snap-align: start; 
+    width: 100%;
+    /* Menjaga rasio kartu agar tetap seragam */
+    min-height: 180px; 
+}
+
+/* Mempercantik Scrollbar agar senada dengan tema Data Analyst Anda */
+.portfolio-grid::-webkit-scrollbar {
+    height: 8px;
+}
+.portfolio-grid::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.portfolio-grid::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+/* Menyamakan ukuran card tanpa memotong tulisan */
+.portfolio-grid .card {
+  min-height: 280px;
+  height: auto;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-grid .card h3 {
+  min-height: 65px;
+}
+
+.portfolio-grid .card .subtitle {
+  min-height: 72px;
+  overflow: visible;
+}
+
+.portfolio-grid .card .tech {
+  margin-top: auto;
+}
+
+
+/* Pengaturan posisi Scorecard di Top Bar */
+.looker-stats {
+  margin-top: 8px;      /* Jarak atas 8px */
+  margin-left: 24px;    /* Jarak kiri 24px */
+  margin-right: 24px;   /* Jarak kanan 24px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Pastikan iframe tidak memiliki margin bawaan */
+.looker-stats iframe {
+  border: none;
+  display: block;
+}
+
+/* --- Social Links --- */
+.social-links-minimalist {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-links-minimalist a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  transition: opacity 0.3s;
+}
+
+.social-links-minimalist a:hover {
+  opacity: 0.7;
+}
+
+.separator {
+  color: #cbd5e1;
+}
+
+/* --- Marquee (Skill Scrolling) --- */
+
+/* Kurangi padding pada header profil agar tidak terlalu memakan tempat */
+header.profile {
+  padding: 40px 20px 10px 20px; /* Atas 40px, bawah hanya 10px */
+}
+
+/* Kurangi margin pada marquee skill */
+.marquee-container {
+  margin: 10px 0 20px 0; /* Jarak bawah dikurangi jadi 20px */
+}
+
+/* Hilangkan margin berlebih pada judul CV */
+.cv-viewer .section-title {
+  margin-top: 0; 
+  padding-top: 0;
+}
+
+.marquee-container {
+  overflow: hidden;
+  background: white;
+  padding: 15px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  margin: 40px 0;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 25s linear infinite;
+}
+
+.marquee-content span {
+  padding: 0 30px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- CV Slider --- */
+/* --- CV Viewer --- */
+
+.cv-viewer {
+  padding: 60px 0;
+}
+
+/* Dashboard Looker Studio */
+.cv-stats-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 25px;
+}
+
+.cv-stats-container iframe {
+  display: block;
+  width: 100%;
+  height: 200px;
+  border: 0;
+}
+
+
+/* --- Pilihan CV --- */
+
+.cv-options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px auto;
+  max-width: 1000px;
+}
+
+/* Tombol CV */
+.cv-option {
+  flex: 1;
+  padding: 18px 20px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+
+  cursor: pointer;
+  text-align: center;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.20);
+}
+
+/* Saat mouse diarahkan */
+.cv-option:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.30);
+}
+
+/* CV yang sedang dipilih */
+.cv-option.active {
+  background: #1d4ed8;
+  border-color: #1e40af;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.20),
+    0 8px 20px rgba(37, 99, 235, 0.30);
+}
+
+/* Judul tombol */
+.cv-option-title {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+/* Tulisan View CV */
+.cv-option-desc {
+  display: block;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+
+/* --- Tampilan CV --- */
+
+.cv-embed-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  background: #ffffff;
+
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.10);
+}
+
+#cv-frame {
+  display: block;
+  width: 100%;
+  height: 700px;
+  border: none;
+}
+
+
+/* --- Tombol Download jika masih digunakan --- */
+
+.cv-action {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-download {
+  background: var(--primary-color);
+  color: white;
+
+  padding: 12px 25px;
+  border-radius: 8px;
+
+  text-decoration: none;
+  font-weight: 600;
+
+  display: inline-block;
+
+  transition: transform 0.2s;
+}
+
+.btn-download:hover {
+  transform: translateY(-2px);
+}
+
+
+/* --- Responsive HP --- */
+
+@media (max-width: 768px) {
+
+  .cv-viewer {
+    padding: 40px 0;
+    
+  }
+
+  .cv-options {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cv-option {
+    width: 100%;
+  }
+
+  .cv-stats-container iframe {
+    height: 180px;
+  }
+
+  #cv-frame {
+    height: 600px;
+  }
+}
+
+/* --- Portfolio Grid --- */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e2e8f0;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.badge {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+/* Badge Colors */
+.badge.excel {
+  background: #dcfce7;
+  color: #166534;
+}
+.badge.python {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.badge.sql {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge.bi,
+.badge.pbi {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+.badge.healthcare {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.badge.aviation {
+  background: #e0f2fe;
+  color: #075985;
+}
+.badge.marketing {
+  background: #ffd700;
+  color: #ffffff;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.tech {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  border-top: 1px solid #f1f5f9;
+  padding-top: 15px;
+}
+
+/* --- Certificates --- */
+/* --- Certificates --- */
+.certificates {
+  padding: 80px 0;
+}
+
+/* Menampilkan 3 sertifikat dan bisa digeser ke kanan */
+.cert-grid {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 40px) / 3);
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+}
+
+.cert-item {
+  min-width: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  scroll-snap-align: start;
+}
+
+.cert-img-wrapper img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.cert-info {
+  padding: 20px;
+}
+
+.cert-info h4 {
+  margin-bottom: 5px;
+}
+
+.cert-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Tampilan HP: satu sertifikat terlihat, lalu geser */
+@media (max-width: 768px) {
+  .cert-grid {
+    grid-auto-columns: 85%;
+    gap: 15px;
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cv-embed-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .cv-embed-container iframe {
+    height: 400px; /* Lebih pendek untuk layar HP */
+  }
+}
+
+/* Tampilan Standar (Laptop/Desktop) */
+.portfolio-grid {
+    display: grid;
+    grid-template-rows: repeat(3, auto); /* 3 Baris */
+    grid-auto-flow: column;
+    grid-auto-columns: calc(33.33% - 14px); /* 3 Kolom */
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Tampilan Khusus HP (Mobile) */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        /* Di HP lebih baik 2 baris agar kartu tidak terlalu kecil */
+        grid-template-rows: repeat(2, auto); 
+        /* Di HP 1.2 kolom agar pengunjung tahu ada kartu di sebelah kanan yang bisa digeser */
+        grid-auto-columns: calc(85% - 10px); 
+        gap: 15px;
+        padding-left: 15px; /* Memberi ruang di pinggir layar */
+    }
+    
+    .portfolio-grid .card {
+        min-height: 150px;
+    }
+}
+
+/* --- About Me & Contact Card --- */
+.about-contact-card {
+  width: 100%;
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 25px;
+  text-align: left;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+}
+
+.about-content h2,
+.contact-content h2 {
+  color: var(--text-main);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.about-content p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.contact-content {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.contact-links a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.contact-links a:hover {
+  opacity: 0.7;
+}
+
+body.dark-mode .about-contact-card {
+  border: 1px solid var(--border-color);
+}
+
+body.dark-mode .contact-content {
+  border-top-color: var(--border-color);
+}
+
+@media (max-width: 600px) {
+  .about-contact-card {
+    padding: 22px;
+  }
+
+  .contact-links {
+    gap: 12px 18px;
+  }
+}
+
+/* HALAMAN 1: OPEN TO WORK */
+.closing-cta {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #eff6ff, #f8fafc );
+  border-top: 1px solid #dbeafe;
+}
+
+.closing-content {
+  max-width: 700px;
+}
+
+/* HALAMAN 2: INTERESTED */
+.contact-cta {
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background: var(--bg-color);
+  border-top: 1px solid #e2e8f0;
+}
+
+.contact-cta-content {
+  max-width: 650px;
+}
+
+.closing-label {
+  margin-bottom: 14px;
+  color: var(--primary-color);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.closing-content h2,
+.contact-cta h2 {
+  margin-bottom: 18px;
+  color: var(--text-main);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.2;
+}
+
+.closing-content p:not(.closing-label),
+.contact-cta-content > p:not(.closing-label) {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.answer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.answer-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.yes-btn {
+  background: var(--primary-color);
+  color: white;
+}
+
+.no-btn {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.answer-message {
+  min-height: 24px;
+  margin-top: 15px;
+  color: var(--primary-color) !important;
+  font-weight: 600;
+}
+
+/* FOOTER */
+.site-footer {
+  width: 100%;
+  padding: 35px 5% 25px;
+  background: var(--card-bg);
+  border-top: 1px solid #e2e8f0;
+}
+
+.footer-content,
+.footer-bottom {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding-bottom: 24px;
+}
+
+.footer-brand strong {
+  color: var(--text-main);
+}
+
+.footer-brand p {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 22px;
+}
+
+.footer-links a,
+.back-to-top {
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 600px) {
+  .closing-cta,
+  .contact-cta {
+    min-height: 60vh;
+  }
+
+  .footer-content,
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+}
