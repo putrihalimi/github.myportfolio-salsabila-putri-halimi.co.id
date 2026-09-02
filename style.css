@@ -418,28 +418,30 @@ header.profile {
 .cv-options {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
-  margin: 25px auto;
-  max-width: 1000px;
+  margin: 20px auto;
+  max-width: 720px;
 }
 
 /* Tombol CV */
 .cv-option {
-  flex: 1;
-  padding: 18px 20px;
+  flex: 1 1 180px;
+  max-width: 230px;
+  padding: 10px 14px;
 
   background: #2563eb;
   color: #ffffff;
 
-  border: 2px solid #2563eb;
-  border-radius: 12px;
+  border: 1.5px solid #2563eb;
+  border-radius: 10px;
 
   cursor: pointer;
   text-align: center;
 
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 
-  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.20);
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.18);
 }
 
 /* Saat mouse diarahkan */
@@ -449,7 +451,7 @@ header.profile {
 
   transform: translateY(-2px);
 
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.30);
+  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.28);
 }
 
 /* CV yang sedang dipilih */
@@ -458,23 +460,25 @@ header.profile {
   border-color: #1e40af;
 
   box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.20),
-    0 8px 20px rgba(37, 99, 235, 0.30);
+    0 0 0 2px rgba(37, 99, 235, 0.25),
+    0 5px 14px rgba(37, 99, 235, 0.28);
 }
 
 /* Judul tombol */
 .cv-option-title {
   display: block;
-  font-weight: 700;
-  font-size: 16px;
-  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 1.3;
+  margin-bottom: 3px;
 }
 
 /* Tulisan View CV */
 .cv-option-desc {
   display: block;
-  font-size: 13px;
+  font-size: 11.5px;
   opacity: 0.9;
+  font-weight: 500;
 }
 
 
