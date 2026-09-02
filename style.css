@@ -870,6 +870,21 @@ body.dark-mode .contact-content {
   border-top: 1px solid #e2e8f0;
 }
 
+body.dark-mode .contact-cta {
+  border-top-color: #334155;
+}
+
+body.dark-mode .no-btn {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+/* Dark mode: background gelap supaya teks putih terbaca */
+body.dark-mode .closing-cta {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-top: 1px solid #334155;
+}
+
 .contact-cta-content {
   max-width: 650px;
 }
