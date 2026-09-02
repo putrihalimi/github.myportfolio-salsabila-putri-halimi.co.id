@@ -543,11 +543,23 @@ header.profile {
 
   .cv-options {
     flex-direction: column;
-    gap: 12px;
+    align-items: center;
+    gap: 8px;
+    max-width: 280px;
   }
 
   .cv-option {
     width: 100%;
+    max-width: 280px;
+    padding: 9px 12px;
+  }
+
+  .cv-option-title {
+    font-size: 13px;
+  }
+
+  .cv-option-desc {
+    font-size: 11px;
   }
 
   .cv-stats-container iframe {
